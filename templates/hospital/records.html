@@ -1,0 +1,89 @@
+{% extends 'hospital/doctor_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reports</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    .button{
+        background-color: #4c6faf;
+    }
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="menu" tabindex="0">
+    <div class="smartphone-menu-trigger"></div>
+    <header class="avatar">
+      <img src="{% static patient.profile_pic.url %}" alt="Profile Pic" />
+      <br><br>
+      <h6>Patient</h6>
+      <h2>{{request.user.first_name}}</h2>
+    </header>
+    <ul>
+      <li tabindex="0" class="icon-dashboard"> <a style="color:white; text-decoration:none;" href="/patient-dashboard"><span>Dashboard</span></a> </li>
+      <li tabindex="0" class="icon-calendar"> <a style="color:white; text-decoration:none;" href="/patient-appointment"><span>Appointments</span></a></li>
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-view-doctor"><span>Doctors</span></a></li>
+      
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-discharge"><span>Discharge</span></a></li>
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-report"><span>Reports</span></a></li>
+    </ul>
+  </nav>
+    <div class="container">
+        
+        <form  action="" method="get" style="margin-left:70%;" class="form-inline my-2 my-lg-0">
+          {% csrf_token %}
+          <button  class="btn btn-outline-success my-2 my-sm-0 "  type="submit"><a href="/patient-upload">Upload a File</a> </button>
+        </form>
+     
+    
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h6 class="panel-title">Your Reports</h6>
+        </div>
+        <table class="table table-hover" id="dev-table">
+          <thead>
+            
+            <tr>
+              <th>Report name or Description</th>
+              <th>File</th>
+              
+              
+    
+            </tr>
+          </thead>
+          {% for i in repo %}
+          <tr>
+            <td> {{i.desc}} </td>
+            <td><a href="{{i.report.url}}" download>{{i.report}}</a></td>
+            
+          </tr>
+         {% endfor %}
+        </table>
+      </div>
+      
+     
+    
+    </div>
+</body>
+
+</html>
+{% endblock content %}

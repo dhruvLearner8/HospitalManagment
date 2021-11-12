@@ -1,0 +1,74 @@
+{% extends 'hospital/doctor_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reports</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    .button{
+        background-color: #4c6faf;
+    }
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="menu" tabindex="0">
+    <div class="smartphone-menu-trigger"></div>
+    <header class="avatar">
+      <img src="{% static patient.profile_pic.url %}" alt="Profile Pic" />
+      <br><br>
+      <h6>Patient</h6>
+      <h2>{{request.user.first_name}}</h2>
+    </header>
+    <ul>
+      <li tabindex="0" class="icon-dashboard"> <a style="color:white; text-decoration:none;" href="/patient-dashboard"><span>Dashboard</span></a> </li>
+      <li tabindex="0" class="icon-calendar"> <a style="color:white; text-decoration:none;" href="/patient-appointment"><span>Appointments</span></a></li>
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-view-doctor"><span>Doctors</span></a></li>
+      
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-discharge"><span>Discharge</span></a></li>
+      <li tabindex="0" class="icon-users"> <a style="color:white; text-decoration:none;" href="/patient-report"><span>Reports</span></a></li>
+    </ul>
+  </nav>
+  <div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="form-group">
+        <input type="text" name="description" placeholder="enter description of report" style="height:100px;width:400px"><br>
+    </div>
+        <div class="form-group">
+            <input type=file required name="report">
+        </div>
+       
+
+        
+        <input type="Submit">
+    </form>
+    
+    
+    
+</div>
+      
+     
+    
+    
+</body>
+
+</html>
+{% endblock content %}
